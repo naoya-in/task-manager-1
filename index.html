@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDoアプリ(Python3 + Bottle)</title>
+</head>
+<body>
+<h2>ToDo 新規登録</h2>
+<form name="todo" method="POST" action="/add">
+    <input type="text" name="name" placeholder="ToDoを入力" required/><br/>
+    <input type="date" name="deadline" placeholder="期限を入力"/><br/>
+    <select name="important">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+    </select><br/>
+    <input type="submit" value="追加"/>
+</form>
+
+<h2>ToDo 一覧</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>タスクID</th>
+        <th>タスク名</th>
+        <th>重要度</th>
+        <th>期限</th>
+        <th>完了</th>
+    </tr>
+    </thead>
+    %for todo in todo_list:
+    <tr>
+        <td>{{todo["id"]}}</td>
+        <td>{{todo["name"]}}</td>
+        <td>{{todo["important"]}}</td>
+        <td>{{todo["deadline"]}}</td>
+        <td>{{todo["is_done"]}}</td>
+        <td><a href="/done/{{todo['id']}}">完了</a></td>
+        <td><a href="/delete/{{todo['id']}}">削除</a></td>
+    </tr>
+    %end
+</table>
+
+</body>
+</html>
+
