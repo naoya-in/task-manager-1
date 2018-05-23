@@ -1,5 +1,5 @@
 # coding: UTF-8
-from bottle import route, run, template, redirect, request
+from bottle import route, run, template, redirect, request, static_file
 import sqlite3
 
 # データベースに接続
@@ -16,6 +16,15 @@ conn.close()
 def index():
     todo_list = get_todo_list()
     return template("index", todo_list=todo_list)
+
+# 静的ファイル読み込み
+@route('/css/<filename:re:.*\.css>')
+def css(filename):
+    return static_file(filename, root="css/")
+
+@route('/js/<filename:re:.*\.js>')
+def js(filename):
+    return static_file(filename, root="js/")
 
 
 # methodにPOSTを指定して、add関数を実装する
@@ -104,5 +113,5 @@ def done_todo(todo_id):
     connection.close()
 
 
-# テスト用のサーバをlocalhost:8080で起動する
+# テスト用のサーバをlocalhost:12345で起動する
 run(host="localhost", port=12345, debug=True, reloader=True)

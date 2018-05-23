@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDoアプリ(Python3 + Bottle)</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 <body>
 <h2>ToDo 新規登録</h2>
 <form name="todo" method="POST" action="/add">
     <input type="text" name="name" placeholder="ToDoを入力" required/><br/>
     <input type="date" name="deadline" placeholder="期限を入力"/><br/>
+    <p>重要度</p>
     <select name="important">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
+            <option value="1">最重要</option>
+            <option value="2">重要</option>
+            <option value="3">あまり重要でない</option>
+            <option value="4">重要でない</option>
     </select><br/>
     <input type="submit" value="追加"/>
 </form>
-
 <h2>ToDo 一覧</h2>
 <table border="1">
     <thead>
