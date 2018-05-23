@@ -38,6 +38,7 @@ def delete(todo_id):
     delete_todo(todo_id)
     return redirect("/")
 
+
 @route("/done/<todo_id:int>")
 def done(todo_id):
     done_todo(todo_id)
